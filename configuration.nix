@@ -7,6 +7,7 @@
 {
 
   nixpkgs.config.allowUnfree = true;
+  services.flatpak.enable = true;
 
   imports =
     [ # Include the results of the hardware scan.
@@ -27,6 +28,22 @@
   time.timeZone = "Asia/Almaty";
   
   services.displayManager.ly.enable = true;
+  services.displayManager.sddm.settings = {
+      General = {
+          Numlock = "on";
+      };
+  };
+  # Включение Numlock в TTY (консоли)
+  systemd.services.numlock-on = {
+    description = "Switch on Numlock on boot";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      # Используем setleds для виртуальных консолей
+      ExecStart = "/bin/sh -c 'for tty in /dev/tty[1-6]; do /run/current-system/sw/bin/setleds -D +num < \"$tty\"; done'";
+    };
+  };
+
 
   services.getty.autologinUser = "master";
 
@@ -124,6 +141,7 @@
      networkmanagerapplet
      gcc
      gnumake
+     foot
    ];
 
   fonts.packages = with pkgs; [

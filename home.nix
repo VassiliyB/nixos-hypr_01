@@ -6,6 +6,8 @@
 	./modules/hypr
 	./modules/waybar
 	./modules/alacritty
+	./modules/foot
+	./modules/nvim
    ];
 
    home.username = "master";
