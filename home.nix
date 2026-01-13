@@ -29,4 +29,19 @@
 	'';
 	
     };
+
+   services.flameshot = {
+      enable = true;
+      package = pkgs.flameshot; # Можно использовать pkgs.flameshot.override { ... } если нужны спец. патчи
+      settings = {
+          General = {
+          # Важнейшие настройки для Wayland
+              useGrimAdapter = true;
+              disabledGrimWarning = true;
+              showStartupLaunchMessage = false;
+          };
+      };
+   };
+
+    home.packages = [ pkgs.grim ]; # Flameshot будет вызывать grim для захвата
 }

@@ -109,7 +109,3 @@ button:hover {
     color: @white;
     border-bottom: 4px solid @white; /* Добавил 4px и solid */
 }
-
-#tray {
-    background-color: #2980b9;
-}

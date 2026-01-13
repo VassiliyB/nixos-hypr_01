@@ -18,12 +18,7 @@
     ],
 
     "modules-right": [
-        "custom/sep",
         "network",
-        "custom/sep",
-        "cpu",
-        "custom/sep",
-        "memory",
         "custom/sep",
         "disk",
         "custom/sep",
@@ -49,7 +44,7 @@
     "custom/language": {
         "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | sed 's/English (US)/US/; s/Russian/RU/'",
         "interval": 1,
-        "format": "  {}",
+        "format": "{}  ",
         "tooltip": false
     },
     "hyprland/window" : {
@@ -79,7 +74,7 @@
     "disk": {
         "interval": 60,
         "path": "/",
-        "format": "{free}"
+        "format": "{free} 󰋊"
     },
     "battery": {
         "states": {
@@ -89,6 +84,7 @@
         },
         "format": "{capacity}% {icon}",
         "format-plugged": "{capacity}% ",
+	"format-charging": "{capacity}% 󱐋 {icon}",
         "format-alt": "Bat {capacity}%",
         "format-time": "{H}:{M}",
         "format-icons": ["", "", "", "", ""]
@@ -101,6 +97,13 @@
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) "
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-"
     },
     "custom/sep": {
         "format" : "|",

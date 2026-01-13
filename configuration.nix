@@ -117,6 +117,13 @@
      rofi
      google-chrome
      jq
+     flameshot
+     grim
+     yazi
+     bibata-cursors
+     networkmanagerapplet
+     gcc
+     gnumake
    ];
 
   fonts.packages = with pkgs; [
