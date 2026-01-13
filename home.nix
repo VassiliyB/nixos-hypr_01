@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+
+   imports = [
+	./modules/hypr
+   ];
+
    home.username = "master";
    home.homeDirectory ="/home/master";
    home.stateVersion = "25.11";

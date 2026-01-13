@@ -16,6 +16,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 8;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -49,7 +50,19 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+      LC_TIME = "ru_RU.UTF-8";
+  };
+
+  services.xserver.xkb = {
+      layout = "us,ru";
+      options = "grp:alt_shift_toggle";
+  };
+
+  console.keyMap = "ru";
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
