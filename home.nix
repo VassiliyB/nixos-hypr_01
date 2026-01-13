@@ -4,6 +4,7 @@
 
    imports = [
 	./modules/hypr
+	./modules/waybar
    ];
 
    home.username = "master";
