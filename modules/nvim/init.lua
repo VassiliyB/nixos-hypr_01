@@ -150,6 +150,22 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
+
+-- Количество пробелов, которое занимает один символ табуляции
+vim.opt.tabstop = 4
+
+-- Количество пробелов, используемое для каждого уровня отступа (команда >>, <<)
+vim.opt.shiftwidth = 4
+
+-- Превращать ли нажатие Tab в пробелы
+vim.opt.expandtab = true
+
+-- Количество пробелов, которое вставляет нажатие Tab в режиме вставки
+vim.opt.softtabstop = 4
+
+-- Умные отступы (копирует отступ предыдущей строки)
+vim.opt.smartindent = true
+
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
@@ -949,7 +965,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    main = 'nvim-treesitter', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },

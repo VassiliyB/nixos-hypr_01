@@ -8,6 +8,7 @@
 	./modules/alacritty
 	./modules/foot
 	./modules/nvim
+	./modules/yazi
    ];
 
    home.username = "master";

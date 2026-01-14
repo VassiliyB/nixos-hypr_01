@@ -142,6 +142,7 @@
      gcc
      gnumake
      foot
+     fzf
    ];
 
   fonts.packages = with pkgs; [

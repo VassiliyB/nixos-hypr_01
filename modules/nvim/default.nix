@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.neovim = {
@@ -9,7 +9,8 @@
   };
 
   # Пробрасываем всю папку конфига целиком в ~/.config/nvim
-  xdg.configFile."nvim".source = ./.;
+  #xdg.configFile."nvim".source = ./.;
+   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/master/nixos-dotfiles/modules/nvim";
 
   # Зависимости, без которых современные плагины Neovim не будут работать
   home.packages = with pkgs; [
