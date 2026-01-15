@@ -160,15 +160,21 @@
      foot
      fzf
      ntfs3g
-     xfce.thunar
-     xfce.thunar-archive-plugin
-     xfce.tumbler
+     thunar
+     thunar-archive-plugin
+     tumbler
      viewnior
      zathura
      vlc
      tokyonight-gtk-theme
      papirus-icon-theme
      adwaita-icon-theme
+     telegram-desktop
+     mpv
+     gvfs
+     evince
+     xdg-utils
+     imv
    ];
 
 

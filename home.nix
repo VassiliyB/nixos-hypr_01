@@ -15,6 +15,10 @@
    home.homeDirectory ="/home/master";
    home.stateVersion = "25.11";
 
+   home.packages = with pkgs; [
+       grim 
+       xdg-utils
+   ]; 
 
    programs.bash = {
         enable = true;
@@ -53,7 +57,6 @@
       };
    };
 
-    home.packages = [ pkgs.grim ]; # Flameshot будет вызывать grim для захвата
 
      # 1. Глобальная настройка указателя
    home.pointerCursor = {
@@ -88,4 +91,25 @@
         "hyprctl setcursor Bibata-Modern-Classic 24"
       ];
     };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/plain" = [ "neovim.desktop" ];
+      "application/pdf" = [ "org.gnome.Evince.desktop" ];
+      "application/x-bzpostscript" = [ "org.gnome.Evince.desktop" ];
+      "application/x-gzpostscript" = [ "org.gnome.Evince.desktop" ];
+      "application/postscript" = [ "org.gnome.Evince.desktop" ];
+      "image/vnd.djvu" = [ "org.gnome.Evince.desktop" ];
+      "video/mp4" = [ "mpv.desktop" ];
+      "video/x-matroska" = [ "mpv.desktop" ];
+      "image/png" = [ "imv.desktop" ];
+      "image/jpeg" = [ "imv.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-scheme-handler/about" = [ "firefox.desktop" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+    };
+  }; 
 }
