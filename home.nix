@@ -32,6 +32,13 @@
 	'';
 	
     };
+   
+   programs.zoxide = {
+       enable = true;
+       enableZshIntegration = true;   # Если используете zsh
+       enableBashIntegration = true; # Если используете bash
+       enableFishIntegration = true; # Если используете fish
+   };
 
    services.flameshot = {
       enable = true;
@@ -47,4 +54,38 @@
    };
 
     home.packages = [ pkgs.grim ]; # Flameshot будет вызывать grim для захвата
+
+     # 1. Глобальная настройка указателя
+   home.pointerCursor = {
+       gtk.enable = true;
+       x11.enable = true;
+       package = pkgs.bibata-cursors;
+       name = "Bibata-Modern-Classic";
+       size = 24;
+   }; 
+
+   gtk = {
+       enable = true;
+       theme = {
+           package = pkgs.adw-gtk3;
+           name = "adw-gtk3";
+       };
+       cursorTheme = {
+           package = pkgs.bibata-cursors;
+           name = "Bibata-Modern-Classic";
+       };
+   };
+
+   wayland.windowManager.hyprland.settings = {
+      env = [
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_THEME,Bibata-Modern-Classic"
+      ];
+      
+      # Команда для принудительной установки курсора при старте
+      exec-once = [
+        "hyprctl setcursor Bibata-Modern-Classic 24"
+      ];
+    };
 }

@@ -18,6 +18,22 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 8;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+
+  fileSystems."/home/master/data" = {    # Укажите путь, куда хотите примонтировать (папка должна существовать или создастся сама)
+      device = "/dev/disk/by-uuid/48CE09BACE09A0F4";
+      fsType = "ntfs3";                   # Используем быстрый драйвер ядра
+      options = [ 
+        "rw"            # Чтение и запись
+        "uid=1000"      # ID вашего пользователя (обычно 1000)
+        "gid=100"       # ID группы (обычно 100 для пользователей)
+        "dmask=007"     # Права на папки (770)
+        "fmask=117"     # Права на файлы (660)
+        "user"          # Разрешить пользователю монтировать
+        "nofail"        # Система загрузится, даже если диск не подключен (важно для внешних дисков)
+      ];
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -143,7 +159,25 @@
      gnumake
      foot
      fzf
+     ntfs3g
+     xfce.thunar
+     xfce.thunar-archive-plugin
+     xfce.tumbler
+     viewnior
+     zathura
+     vlc
+     tokyonight-gtk-theme
+     papirus-icon-theme
+     adwaita-icon-theme
    ];
+
+
+  environment.sessionVariables = {
+      # Принудительно темная тема для GTK4
+      GTK_THEME = "Tokyonight-Dark";
+      # Wayland поддержка для Qt приложений (если будут)
+      QT_QPA_PLATFORM = "wayland";
+  };
 
   fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono
@@ -151,6 +185,19 @@
 
 
    programs.ssh.startAgent = true;
+
+  programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = with pkgs; [
+      # Здесь список базовых библиотек, которые нужны бинарникам
+      stdenv.cc.cc
+      zlib
+      fuse3
+      icu
+      nss
+      openssl
+      curl
+      expat
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
